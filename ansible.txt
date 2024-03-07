@@ -1,0 +1,29 @@
+# Start ssh
+eval $(ssh-agent)
+
+# Add key
+ssh-add ~/.ssh/id_rsa
+
+# The keys need to be read-writable only by you:
+chmod 600 ~/.ssh/id_rsa
+
+# Run 
+ansible target-1 -m ping -i inventoty.txt
+
+# Inventory
+target-1 ansible_host=20.84.56.157 ansible_connection=ssh ansible_user=azureuser 
+target-2 ansible_host=159.65.150.151 ansible_connection=ssh ansible_user=ubuntu
+
+servers:
+ hosts:
+   target-1:
+     ansible_host: 20.84.56.157
+     ansible_user: azureuser 
+     ansible_connection: ssh
+   target-2:
+     ansible_host: 159.65.150.151
+     ansible_user: ubuntu 
+     ansible_connection: ssh
+
+
+  
